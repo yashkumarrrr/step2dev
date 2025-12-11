@@ -6,22 +6,16 @@
 <title>Step2Dev — Free Cloud & DevOps Audit</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ------------------------
-     Global Styles
-  ------------------------ */
   * { box-sizing: border-box; margin:0; padding:0; font-family: 'Inter', sans-serif; }
-  body { background: #0A0F1F; color: #fff; display:flex; justify-content:center; align-items:center; min-height:100vh; }
+  body { background: #0A0F1F; color: #fff; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px; }
   a { text-decoration: none; }
 
-  /* ------------------------
-     Form Container
-  ------------------------ */
   .form-container {
     background: #0F172A;
     padding: 40px 30px;
     border-radius: 16px;
     width: 100%;
-    max-width: 650px;
+    max-width: 700px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     opacity: 0;
     transform: translateY(20px);
@@ -35,9 +29,6 @@
   h2 { text-align:center; color:#4AB3FF; margin-bottom: 10px; font-weight:700; }
   p { text-align:center; color:#bcdff8; margin-bottom:30px; }
 
-  /* ------------------------
-     Progress Bar
-  ------------------------ */
   .progress-bar {
     height: 6px;
     width: 100%;
@@ -53,12 +44,9 @@
     transition: width 0.4s ease;
   }
 
-  /* ------------------------
-     Input Fields
-  ------------------------ */
   .form-group {
     position: relative;
-    margin-bottom: 24px;
+    margin-bottom: 28px; /* Added extra spacing */
   }
 
   input, textarea, select {
@@ -70,6 +58,7 @@
     color: #fff;
     font-size: 1rem;
     transition: border 0.3s;
+    display: block;
   }
 
   input:focus, textarea:focus, select:focus {
@@ -101,18 +90,12 @@
     color: #4AB3FF;
   }
 
-  textarea { resize: vertical; min-height: 100px; }
+  textarea { resize: vertical; min-height: 120px; }
 
-  /* ------------------------
-     Radio Buttons & Checkboxes
-  ------------------------ */
   .radio-group { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
   .radio-group label { display:flex; align-items:center; gap:6px; font-size:0.95rem; cursor:pointer; }
   .radio-group input { accent-color: #4AB3FF; }
 
-  /* ------------------------
-     Submit Button
-  ------------------------ */
   button {
     width: 100%;
     padding: 16px;
@@ -124,12 +107,10 @@
     font-weight: 600;
     cursor: pointer;
     transition: background 0.3s;
+    margin-top: 10px;
   }
   button:hover { background: #3690d9; }
 
-  /* ------------------------
-     Responsive
-  ------------------------ */
   @media(max-width: 500px){
     .form-container { padding: 30px 20px; }
   }
@@ -141,37 +122,32 @@
   <h2>Step2Dev Free Audit</h2>
   <p>Fill the form below to get a free Cloud & DevOps audit.</p>
 
-  <!-- Progress bar -->
   <div class="progress-bar">
     <div class="progress-bar-fill" id="progressFill"></div>
   </div>
 
   <form id="auditForm" action="#" method="POST" enctype="multipart/form-data">
-    <!-- Name -->
+
     <div class="form-group">
       <input type="text" name="name" id="name" placeholder=" " required>
       <label for="name">Full Name</label>
     </div>
 
-    <!-- Email -->
     <div class="form-group">
       <input type="email" name="email" id="email" placeholder=" " required>
       <label for="email">Email</label>
     </div>
 
-    <!-- Company -->
     <div class="form-group">
       <input type="text" name="company" id="company" placeholder=" " required>
       <label for="company">Company / Organization</label>
     </div>
 
-    <!-- Role -->
     <div class="form-group">
       <input type="text" name="role" id="role" placeholder=" " required>
       <label for="role">Your Role (e.g., CTO, DevOps Engineer)</label>
     </div>
 
-    <!-- Criticality -->
     <div class="form-group">
       <label style="color:#bcdff8;">How critical is this?</label>
       <div class="radio-group">
@@ -181,25 +157,21 @@
       </div>
     </div>
 
-    <!-- Project Links -->
     <div class="form-group">
       <input type="text" name="project_links" id="project_links" placeholder=" " required>
       <label for="project_links">Project Links (repo, website, infra docs)</label>
     </div>
 
-    <!-- File Upload -->
     <div class="form-group">
       <input type="file" name="project_files" id="project_files">
       <label for="project_files">Attach files (optional)</label>
     </div>
 
-    <!-- Description -->
     <div class="form-group">
       <textarea name="description" id="description" placeholder=" " required></textarea>
       <label for="description">Describe the issue / request</label>
     </div>
 
-    <!-- Newsletter opt-in -->
     <div class="form-group">
       <label class="radio-group">
         <input type="checkbox" name="newsletter" value="yes"> Subscribe for updates & DevOps tips
@@ -211,7 +183,6 @@
 </div>
 
 <script>
-  // Progress bar based on focus
   const formFields = document.querySelectorAll('#auditForm .form-group input, #auditForm .form-group textarea');
   const progress = document.getElementById('progressFill');
   formFields.forEach((field, index) => {
