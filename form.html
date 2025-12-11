@@ -2,139 +2,127 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content=device-width, initial-scale=1.0">
-<title>Free Cloud & DevOps Audit — Step2Dev</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Step2Dev — Free Cloud & DevOps Audit</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-body {
-    margin:0;
-    padding:0;
-    background:#0A0F1F;
-    color:#fff;
-    font-family:"Inter", sans-serif;
-}
+  /* ------------------------
+     Global Styles
+  ------------------------ */
+  * { box-sizing: border-box; margin:0; padding:0; font-family: 'Inter', sans-serif; }
+  body { background: #0A0F1F; color: #fff; display:flex; justify-content:center; align-items:center; min-height:100vh; }
+  a { text-decoration: none; }
 
-.container {
-    width:90%;
-    max-width:600px;
-    margin:60px auto;
-    padding:30px;
-    background: linear-gradient(180deg, rgba(12,18,30,0.75), rgba(6,10,20,0.55));
-    border:1px solid rgba(74,179,255,0.08);
-    border-radius:16px;
-    box-shadow:0 10px 40px rgba(0,0,0,0.35);
-}
+  /* ------------------------
+     Form Container
+  ------------------------ */
+  .form-container {
+    background: #0F172A;
+    padding: 40px 30px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+  }
 
-h1 {
-    text-align:center;
-    color:#4AB3FF;
-    font-size:2rem;
-    margin-bottom:10px;
-}
+  @keyframes fadeInUp {
+    to { opacity:1; transform: translateY(0); }
+  }
 
-p.sub {
-    text-align:center;
-    opacity:0.8;
-    margin-bottom:25px;
-}
+  h2 { text-align:center; color:#4AB3FF; margin-bottom: 25px; font-weight:700; }
+  p { text-align:center; color:#bcdff8; margin-bottom:30px; }
 
-label {
-    display:block;
-    margin:12px 0 6px;
-    font-weight:600;
-    color:#cfeeff;
-}
+  /* ------------------------
+     Input Fields
+  ------------------------ */
+  .form-group {
+    position: relative;
+    margin-bottom: 24px;
+  }
 
-input, textarea, select {
-    width:100%;
-    padding:14px;
-    border-radius:10px;
-    border:1px solid rgba(74,179,255,0.1);
-    background:rgba(12,16,22,0.6);
-    color:#e6f5ff;
-    font-size:1rem;
-}
+  input, textarea, select {
+    width: 100%;
+    background: #0A0F1F;
+    border: 1px solid #374151;
+    padding: 18px 16px 6px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1rem;
+    transition: border 0.3s;
+  }
 
-textarea {
-    height:120px;
-    resize:none;
-}
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #4AB3FF;
+  }
 
-button {
-    width:100%;
-    margin-top:20px;
-    padding:14px;
-    border:none;
-    border-radius:10px;
-    background:#4AB3FF;
-    color:#fff;
-    font-size:1.1rem;
-    font-weight:700;
-    cursor:pointer;
-    transition:0.3s;
-}
+  label {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    color: #9fbfe6;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: 0.2s ease all;
+  }
 
-button:hover {
-    opacity:0.85;
-}
+  input:focus + label,
+  input:not(:placeholder-shown) + label,
+  textarea:focus + label,
+  textarea:not(:placeholder-shown) + label,
+  select:focus + label,
+  select:not([value=""]) + label {
+    top: -8px;
+    left: 12px;
+    font-size: 0.85rem;
+    color: #4AB3FF;
+    background: #0F172A;
+    padding: 0 4px;
+  }
 
-.footer {
-    text-align:center;
-    margin-top:20px;
-    opacity:0.65;
-    font-size:0.85rem;
-}
+  textarea { resize: vertical; min-height: 100px; }
+
+  /* ------------------------
+     Radio Buttons
+  ------------------------ */
+  .radio-group { display: flex; gap: 15px; }
+  .radio-group label { display:flex; align-items:center; gap:6px; font-size:0.95rem; cursor:pointer; }
+  .radio-group input { accent-color: #4AB3FF; }
+
+  /* ------------------------
+     Submit Button
+  ------------------------ */
+  button {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    background: #4AB3FF;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  button:hover { background: #3690d9; }
+
+  /* ------------------------
+     Responsive
+  ------------------------ */
+  @media(max-width: 500px){
+    .form-container { padding: 30px 20px; }
+  }
 </style>
-
 </head>
 <body>
 
-<div class="container">
+<div class="form-container">
+  <h2>Step2Dev Free Audit</h2>
+  <p>Fill the form below to get a free Cloud & DevOps audit.</p>
 
-    <h1>Get Your Free Cloud Audit</h1>
-    <p class="sub">100% Free • No Obligations • Delivered in 12 Hours</p>
-
-    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-
-        <label>Your Name</label>
-        <input type="text" name="name" placeholder="John Doe" required />
-
-        <label>Email</label>
-        <input type="email" name="email" placeholder="founder@company.com" required />
-
-        <label>Company / Startup Name</label>
-        <input type="text" name="company" placeholder="Your Company Name" required />
-
-        <label>Website / App URL</label>
-        <input type="text" name="url" placeholder="https://yourapp.com" required />
-
-        <label>Main Issue You're Facing</label>
-        <select name="issue" required>
-            <option value="">Select your main issue</option>
-            <option value="High cloud cost">High Cloud Cost</option>
-            <option value="CI/CD failure">CI/CD Failures</option>
-            <option value="Server downtime">Server Downtime</option>
-            <option value="Slow Performance">Slow Performance</option>
-            <option value="Security issues">Security Issues</option>
-            <option value="Migration help">Migration Help</option>
-            <option value="Other">Other</option>
-        </select>
-
-        <label>Additional Details</label>
-        <textarea name="details" placeholder="Describe the problem you are facing..."></textarea>
-
-        <button type="submit"><i class="fa-solid fa-paper-plane"></i> Submit Audit Request</button>
-
-    </form>
-
-    <div class="footer">
-        © 2025 Step2Dev — Cloud • DevOps • SRE
-    </div>
-
-</div>
-
-</body>
-</html>
+  <form action="#" method="POST">
+    <!-- Name -->
+    <div class="form-
