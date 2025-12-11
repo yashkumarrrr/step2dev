@@ -21,7 +21,7 @@
     padding: 40px 30px;
     border-radius: 16px;
     width: 100%;
-    max-width: 600px;
+    max-width: 650px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     opacity: 0;
     transform: translateY(20px);
@@ -32,8 +32,26 @@
     to { opacity:1; transform: translateY(0); }
   }
 
-  h2 { text-align:center; color:#4AB3FF; margin-bottom: 25px; font-weight:700; }
+  h2 { text-align:center; color:#4AB3FF; margin-bottom: 10px; font-weight:700; }
   p { text-align:center; color:#bcdff8; margin-bottom:30px; }
+
+  /* ------------------------
+     Progress Bar
+  ------------------------ */
+  .progress-bar {
+    height: 6px;
+    width: 100%;
+    background: #1E293B;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: #4AB3FF;
+    transition: width 0.4s ease;
+  }
 
   /* ------------------------
      Input Fields
@@ -67,6 +85,8 @@
     font-size: 1rem;
     pointer-events: none;
     transition: 0.2s ease all;
+    background: #0F172A;
+    padding: 0 4px;
   }
 
   input:focus + label,
@@ -79,16 +99,14 @@
     left: 12px;
     font-size: 0.85rem;
     color: #4AB3FF;
-    background: #0F172A;
-    padding: 0 4px;
   }
 
   textarea { resize: vertical; min-height: 100px; }
 
   /* ------------------------
-     Radio Buttons
+     Radio Buttons & Checkboxes
   ------------------------ */
-  .radio-group { display: flex; gap: 15px; }
+  .radio-group { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
   .radio-group label { display:flex; align-items:center; gap:6px; font-size:0.95rem; cursor:pointer; }
   .radio-group input { accent-color: #4AB3FF; }
 
@@ -123,7 +141,12 @@
   <h2>Step2Dev Free Audit</h2>
   <p>Fill the form below to get a free Cloud & DevOps audit.</p>
 
-  <form action="#" method="POST">
+  <!-- Progress bar -->
+  <div class="progress-bar">
+    <div class="progress-bar-fill" id="progressFill"></div>
+  </div>
+
+  <form id="auditForm" action="#" method="POST" enctype="multipart/form-data">
     <!-- Name -->
     <div class="form-group">
       <input type="text" name="name" id="name" placeholder=" " required>
@@ -138,8 +161,14 @@
 
     <!-- Company -->
     <div class="form-group">
-      <input type="text" name="company" id="company" placeholder=" ">
-      <label for="company">Company</label>
+      <input type="text" name="company" id="company" placeholder=" " required>
+      <label for="company">Company / Organization</label>
+    </div>
+
+    <!-- Role -->
+    <div class="form-group">
+      <input type="text" name="role" id="role" placeholder=" " required>
+      <label for="role">Your Role (e.g., CTO, DevOps Engineer)</label>
     </div>
 
     <!-- Criticality -->
@@ -154,19 +183,44 @@
 
     <!-- Project Links -->
     <div class="form-group">
-      <input type="text" name="project_links" id="project_links" placeholder=" ">
-      <label for="project_links">Project links (repo, website, infra docs)</label>
+      <input type="text" name="project_links" id="project_links" placeholder=" " required>
+      <label for="project_links">Project Links (repo, website, infra docs)</label>
+    </div>
+
+    <!-- File Upload -->
+    <div class="form-group">
+      <input type="file" name="project_files" id="project_files">
+      <label for="project_files">Attach files (optional)</label>
     </div>
 
     <!-- Description -->
     <div class="form-group">
-      <textarea name="description" id="description" placeholder=" "></textarea>
+      <textarea name="description" id="description" placeholder=" " required></textarea>
       <label for="description">Describe the issue / request</label>
+    </div>
+
+    <!-- Newsletter opt-in -->
+    <div class="form-group">
+      <label class="radio-group">
+        <input type="checkbox" name="newsletter" value="yes"> Subscribe for updates & DevOps tips
+      </label>
     </div>
 
     <button type="submit">Get Free Audit</button>
   </form>
 </div>
+
+<script>
+  // Progress bar based on focus
+  const formFields = document.querySelectorAll('#auditForm .form-group input, #auditForm .form-group textarea');
+  const progress = document.getElementById('progressFill');
+  formFields.forEach((field, index) => {
+    field.addEventListener('focus', () => {
+      let percent = Math.floor(((index + 1) / formFields.length) * 100);
+      progress.style.width = percent + '%';
+    });
+  });
+</script>
 
 </body>
 </html>
