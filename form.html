@@ -47,10 +47,7 @@
 
   @keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
 
-  .form-group {
-    position:relative;
-    margin-bottom:28px;
-  }
+  .form-group { position:relative; margin-bottom:28px; }
 
   input, textarea, select {
     width:100%;
@@ -122,7 +119,8 @@
     <div class="progress-bar-fill" id="progressFill"></div>
   </div>
 
-  <form id="auditForm" action="#" method="POST" enctype="multipart/form-data">
+  <!-- Update: Form action to Formspree -->
+  <form id="auditForm" action="https://formspree.io/f/yourFormID" method="POST" enctype="multipart/form-data">
 
     <!-- Step 1 -->
     <div class="step active">
@@ -201,6 +199,11 @@
   fileInput.addEventListener('change', ()=>{
     if(fileInput.files.length) fileDrop.textContent = fileInput.files.length + ' file(s) selected';
     else fileDrop.textContent = 'Drag & drop files here or click to upload';
+  });
+
+  // Optional: Show alert on successful submission
+  document.getElementById('auditForm').addEventListener('submit', function(e){
+    alert('Thank you! Your free audit request has been submitted.');
   });
 </script>
 
