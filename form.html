@@ -3,79 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Step2Dev — Free Cloud & DevOps Audit</title>
+<title>Step2Dev Free Audit</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin:0; padding:0; font-family: 'Inter', sans-serif; }
-  body { background: #0A0F1F; color: #fff; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px; }
-  a { text-decoration: none; }
+  * { box-sizing:border-box; margin:0; padding:0; font-family:'Inter',sans-serif; }
+  body { background:#0A0F1F; color:#fff; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px; }
 
   .form-container {
-    background: #0F172A;
-    padding: 40px 30px;
-    border-radius: 16px;
-    width: 100%;
-    max-width: 700px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s forwards;
+    background:#0F172A;
+    border-radius:16px;
+    max-width:700px;
+    width:100%;
+    padding:40px 30px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.5);
+    overflow:hidden;
   }
 
-  @keyframes fadeInUp {
-    to { opacity:1; transform: translateY(0); }
-  }
-
-  h2 { text-align:center; color:#4AB3FF; margin-bottom: 10px; font-weight:700; }
+  h2 { text-align:center; color:#4AB3FF; font-weight:700; margin-bottom:5px; }
   p { text-align:center; color:#bcdff8; margin-bottom:30px; }
 
   .progress-bar {
-    height: 6px;
-    width: 100%;
-    background: #1E293B;
-    border-radius: 4px;
-    margin-bottom: 30px;
-    overflow: hidden;
+    height:6px;
+    width:100%;
+    background:#1E293B;
+    border-radius:4px;
+    margin-bottom:30px;
+    overflow:hidden;
   }
   .progress-bar-fill {
-    height: 100%;
-    width: 0%;
-    background: #4AB3FF;
-    transition: width 0.4s ease;
+    height:100%;
+    width:0%;
+    background:#4AB3FF;
+    transition:width 0.4s ease;
   }
 
+  form { position:relative; }
+
+  .step {
+    display:none;
+    animation: fadeIn 0.6s ease;
+  }
+  .step.active { display:block; }
+
+  @keyframes fadeIn { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+
   .form-group {
-    position: relative;
-    margin-bottom: 28px; /* Added extra spacing */
+    position:relative;
+    margin-bottom:28px;
   }
 
   input, textarea, select {
-    width: 100%;
-    background: #0A0F1F;
-    border: 1px solid #374151;
-    padding: 18px 16px 6px;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 1rem;
-    transition: border 0.3s;
-    display: block;
+    width:100%;
+    background:#0A0F1F;
+    border:1px solid #374151;
+    padding:18px 16px 6px;
+    border-radius:10px;
+    color:#fff;
+    font-size:1rem;
+    transition:border 0.3s;
   }
-
-  input:focus, textarea:focus, select:focus {
-    outline: none;
-    border-color: #4AB3FF;
-  }
+  input:focus, textarea:focus, select:focus { border-color:#4AB3FF; outline:none; }
 
   label {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    color: #9fbfe6;
-    font-size: 1rem;
-    pointer-events: none;
-    transition: 0.2s ease all;
-    background: #0F172A;
-    padding: 0 4px;
+    position:absolute;
+    top:16px;
+    left:16px;
+    color:#9fbfe6;
+    font-size:1rem;
+    pointer-events:none;
+    background:#0F172A;
+    padding:0 4px;
+    transition:0.2s ease all;
   }
 
   input:focus + label,
@@ -84,43 +82,41 @@
   textarea:not(:placeholder-shown) + label,
   select:focus + label,
   select:not([value=""]) + label {
-    top: -8px;
-    left: 12px;
-    font-size: 0.85rem;
-    color: #4AB3FF;
+    top:-8px;
+    left:12px;
+    font-size:0.85rem;
+    color:#4AB3FF;
   }
 
-  textarea { resize: vertical; min-height: 120px; }
+  textarea { resize: vertical; min-height:120px; }
 
-  .radio-group { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; }
-  .radio-group label { display:flex; align-items:center; gap:6px; font-size:0.95rem; cursor:pointer; }
-  .radio-group input { accent-color: #4AB3FF; }
+  .radio-group { display:flex; flex-direction:column; gap:12px; margin-top:8px; }
+  .radio-group label { display:flex; align-items:center; gap:6px; cursor:pointer; font-size:0.95rem; }
+  .radio-group input { accent-color:#4AB3FF; }
 
-  button {
-    width: 100%;
-    padding: 16px;
-    border: none;
-    border-radius: 10px;
-    background: #4AB3FF;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s;
-    margin-top: 10px;
+  .btn-group { display:flex; justify-content:space-between; margin-top:20px; }
+  button { padding:14px 20px; border:none; border-radius:10px; background:#4AB3FF; color:#fff; font-weight:600; cursor:pointer; transition:background 0.3s; }
+  button:hover { background:#3690d9; }
+  button:disabled { background:#374151; cursor:not-allowed; }
+
+  @media(max-width:500px){ .form-container { padding:30px 20px; } }
+
+  .file-drop {
+    border:2px dashed #374151;
+    border-radius:10px;
+    padding:20px;
+    text-align:center;
+    color:#9fbfe6;
+    cursor:pointer;
   }
-  button:hover { background: #3690d9; }
-
-  @media(max-width: 500px){
-    .form-container { padding: 30px 20px; }
-  }
+  .file-drop:hover { border-color:#4AB3FF; }
 </style>
 </head>
 <body>
 
 <div class="form-container">
   <h2>Step2Dev Free Audit</h2>
-  <p>Fill the form below to get a free Cloud & DevOps audit.</p>
+  <p>Get a Free Cloud & DevOps Audit</p>
 
   <div class="progress-bar">
     <div class="progress-bar-fill" id="progressFill"></div>
@@ -128,68 +124,96 @@
 
   <form id="auditForm" action="#" method="POST" enctype="multipart/form-data">
 
-    <div class="form-group">
-      <input type="text" name="name" id="name" placeholder=" " required>
-      <label for="name">Full Name</label>
-    </div>
-
-    <div class="form-group">
-      <input type="email" name="email" id="email" placeholder=" " required>
-      <label for="email">Email</label>
-    </div>
-
-    <div class="form-group">
-      <input type="text" name="company" id="company" placeholder=" " required>
-      <label for="company">Company / Organization</label>
-    </div>
-
-    <div class="form-group">
-      <input type="text" name="role" id="role" placeholder=" " required>
-      <label for="role">Your Role (e.g., CTO, DevOps Engineer)</label>
-    </div>
-
-    <div class="form-group">
-      <label style="color:#bcdff8;">How critical is this?</label>
-      <div class="radio-group">
-        <label><input type="radio" name="criticality" value="very_urgent" required> Very urgent – need fix now</label>
-        <label><input type="radio" name="criticality" value="medium"> Medium – this week</label>
-        <label><input type="radio" name="criticality" value="not_urgent"> Not urgent – exploring options</label>
+    <!-- Step 1 -->
+    <div class="step active">
+      <div class="form-group">
+        <input type="text" name="name" id="name" placeholder=" " required>
+        <label for="name">Full Name</label>
+      </div>
+      <div class="form-group">
+        <input type="email" name="email" id="email" placeholder=" " required>
+        <label for="email">Email</label>
+      </div>
+      <div class="form-group">
+        <input type="text" name="company" id="company" placeholder=" " required>
+        <label for="company">Company / Organization</label>
+      </div>
+      <div class="btn-group">
+        <div></div>
+        <button type="button" id="next1">Next →</button>
       </div>
     </div>
 
-    <div class="form-group">
-      <input type="text" name="project_links" id="project_links" placeholder=" " required>
-      <label for="project_links">Project Links (repo, website, infra docs)</label>
+    <!-- Step 2 -->
+    <div class="step">
+      <div class="form-group">
+        <input type="text" name="role" id="role" placeholder=" " required>
+        <label for="role">Your Role (e.g., CTO, DevOps Engineer)</label>
+      </div>
+      <div class="form-group">
+        <label style="color:#bcdff8;">How critical is this?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="criticality" value="very_urgent" required> Very urgent – need fix now</label>
+          <label><input type="radio" name="criticality" value="medium"> Medium – this week</label>
+          <label><input type="radio" name="criticality" value="not_urgent"> Not urgent – exploring options</label>
+        </div>
+      </div>
+      <div class="btn-group">
+        <button type="button" id="prev2">← Back</button>
+        <button type="button" id="next2">Next →</button>
+      </div>
     </div>
 
-    <div class="form-group">
-      <input type="file" name="project_files" id="project_files">
-      <label for="project_files">Attach files (optional)</label>
+    <!-- Step 3 -->
+    <div class="step">
+      <div class="form-group">
+        <input type="text" name="project_links" id="project_links" placeholder=" " required>
+        <label for="project_links">Project Links (repo, website, docs)</label>
+      </div>
+      <div class="form-group">
+        <div class="file-drop" id="fileDrop">Drag & drop files here or click to upload</div>
+        <input type="file" name="project_files" id="project_files" style="display:none;" multiple>
+      </div>
+      <div class="form-group">
+        <textarea name="description" id="description" placeholder=" " required></textarea>
+        <label for="description">Describe the issue / request</label>
+      </div>
+      <div class="form-group">
+        <label class="radio-group">
+          <input type="checkbox" name="newsletter" value="yes"> Subscribe for updates & DevOps tips
+        </label>
+      </div>
+      <div class="btn-group">
+        <button type="button" id="prev3">← Back</button>
+        <button type="submit">Get Free Audit</button>
+      </div>
     </div>
 
-    <div class="form-group">
-      <textarea name="description" id="description" placeholder=" " required></textarea>
-      <label for="description">Describe the issue / request</label>
-    </div>
-
-    <div class="form-group">
-      <label class="radio-group">
-        <input type="checkbox" name="newsletter" value="yes"> Subscribe for updates & DevOps tips
-      </label>
-    </div>
-
-    <button type="submit">Get Free Audit</button>
   </form>
 </div>
 
 <script>
-  const formFields = document.querySelectorAll('#auditForm .form-group input, #auditForm .form-group textarea');
-  const progress = document.getElementById('progressFill');
-  formFields.forEach((field, index) => {
-    field.addEventListener('focus', () => {
-      let percent = Math.floor(((index + 1) / formFields.length) * 100);
-      progress.style.width = percent + '%';
-    });
+  const steps = document.querySelectorAll('.step');
+  const progressFill = document.getElementById('progressFill');
+  let currentStep = 0;
+
+  function showStep(index){
+    steps.forEach((step,i)=> step.classList.toggle('active', i===index));
+    progressFill.style.width = ((index+1)/steps.length)*100 + '%';
+  }
+
+  document.getElementById('next1').addEventListener('click', ()=>{ currentStep++; showStep(currentStep); });
+  document.getElementById('next2').addEventListener('click', ()=>{ currentStep++; showStep(currentStep); });
+  document.getElementById('prev2').addEventListener('click', ()=>{ currentStep--; showStep(currentStep); });
+  document.getElementById('prev3').addEventListener('click', ()=>{ currentStep--; showStep(currentStep); });
+
+  // File upload click
+  const fileDrop = document.getElementById('fileDrop');
+  const fileInput = document.getElementById('project_files');
+  fileDrop.addEventListener('click', ()=> fileInput.click());
+  fileInput.addEventListener('change', ()=>{
+    if(fileInput.files.length) fileDrop.textContent = fileInput.files.length + ' file(s) selected';
+    else fileDrop.textContent = 'Drag & drop files here or click to upload';
   });
 </script>
 
