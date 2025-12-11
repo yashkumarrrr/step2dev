@@ -125,4 +125,48 @@
 
   <form action="#" method="POST">
     <!-- Name -->
-    <div class="form-
+    <div class="form-group">
+      <input type="text" name="name" id="name" placeholder=" " required>
+      <label for="name">Full Name</label>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <input type="email" name="email" id="email" placeholder=" " required>
+      <label for="email">Email</label>
+    </div>
+
+    <!-- Company -->
+    <div class="form-group">
+      <input type="text" name="company" id="company" placeholder=" ">
+      <label for="company">Company</label>
+    </div>
+
+    <!-- Criticality -->
+    <div class="form-group">
+      <label style="color:#bcdff8;">How critical is this?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="criticality" value="very_urgent" required> Very urgent – need fix now</label>
+        <label><input type="radio" name="criticality" value="medium"> Medium – this week</label>
+        <label><input type="radio" name="criticality" value="not_urgent"> Not urgent – exploring options</label>
+      </div>
+    </div>
+
+    <!-- Project Links -->
+    <div class="form-group">
+      <input type="text" name="project_links" id="project_links" placeholder=" ">
+      <label for="project_links">Project links (repo, website, infra docs)</label>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <textarea name="description" id="description" placeholder=" "></textarea>
+      <label for="description">Describe the issue / request</label>
+    </div>
+
+    <button type="submit">Get Free Audit</button>
+  </form>
+</div>
+
+</body>
+</html>
